@@ -9,7 +9,13 @@ import { ProductsModule } from './products/products.module';
 import { CommunitesService } from './communites/communites.service';
 
 @Module({
-  imports: [AuthModule, UsersModule, CommunitiesModule, MarketsModule, ProductsModule],
+  imports: [
+    AuthModule,
+    UsersModule,
+    CommunitiesModule,
+    MarketsModule,
+    ProductsModule,
+  ],
   controllers: [AppController],
   providers: [AppService, CommunitesService],
 })
