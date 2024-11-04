@@ -9,6 +9,7 @@ import { UserCommunityController } from './user-community/user-community.control
 import { UserCommunityService } from './user-community/user-community.service';
 import { UsersModule } from './users/users.module';
 import { DatabaseTestService } from './database/database-test.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { DatabaseTestService } from './database/database-test.service';
     MarketsModule,
     ProductsModule,
     DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController, UserCommunityController],
   providers: [AppService, UserCommunityService, DatabaseTestService],
