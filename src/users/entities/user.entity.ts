@@ -14,19 +14,22 @@ export class User {
   id: number;
 
   @Column({ name: 'first_name' })
-  firstName: string;
+  firstName?: string;
 
   @Column({ name: 'last_name' })
-  lastName: string;
+  lastName?: string;
 
   @Column({ name: 'identification_number' })
-  identificationNumber: string;
+  identificationNumber?: string;
 
   @Column()
-  phone: string;
+  phone?: string;
 
   @Column()
   email: string;
+
+  @Column()
+  password: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -35,5 +38,5 @@ export class User {
   updatedAt: Date;
 
   @OneToMany(() => UserCommunity, (userCommunity) => userCommunity.user)
-  userCommunities: UserCommunity[];
+  userCommunities?: UserCommunity[];
 }
