@@ -22,11 +22,14 @@ export class User {
   @Column({ name: 'identification_number' })
   identificationNumber?: string;
 
-  @Column()
+  @Column({ nullable: true })
   phone?: string;
 
   @Column()
   email: string;
+
+  @Column({ nullable: true })
+  profilePic?: string;
 
   @Column()
   password: string;
