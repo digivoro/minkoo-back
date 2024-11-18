@@ -5,8 +5,6 @@ import { DatabaseModule } from './database/database.module';
 import { CommunitiesModule } from './communities/communities.module';
 import { MarketsModule } from './markets/markets.module';
 import { ProductsModule } from './products/products.module';
-import { UserCommunityController } from './user-community/user-community.controller';
-import { UserCommunityService } from './user-community/user-community.service';
 import { UsersModule } from './users/users.module';
 import { DatabaseTestService } from './database/database-test.service';
 import { AuthModule } from './auth/auth.module';
@@ -20,7 +18,7 @@ import { AuthModule } from './auth/auth.module';
     DatabaseModule,
     AuthModule,
   ],
-  controllers: [AppController, UserCommunityController],
-  providers: [AppService, UserCommunityService, DatabaseTestService],
+  controllers: [AppController],
+  providers: [AppService, DatabaseTestService],
 })
 export class AppModule {}
