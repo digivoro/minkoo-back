@@ -26,7 +26,7 @@ export class CommunitiesService {
       where: { id },
     });
     if (!community) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(`Community with ID ${id} not found`);
     }
     return community;
   }
