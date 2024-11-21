@@ -25,4 +25,4 @@ RUN addgroup -g 1001 nestjs && \
 USER nestjs
 
 EXPOSE 3001
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "dev"]
