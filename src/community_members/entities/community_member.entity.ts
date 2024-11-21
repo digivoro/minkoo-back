@@ -2,6 +2,7 @@ import { Community } from 'src/communities/entities/community.entity';
 import { CommunityMemberRole } from 'src/community_member_roles/entities/community_member_role.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
+  Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
@@ -16,6 +17,9 @@ export class CommunityMember {
 
   @PrimaryColumn({ name: 'community_id' })
   communityId: number;
+
+  @Column({ name: 'role_id', nullable: false })
+  roleId: number;
 
   @CreateDateColumn({ name: 'joined_at' })
   joinedAt: Date;

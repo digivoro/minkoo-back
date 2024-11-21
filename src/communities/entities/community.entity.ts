@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserCommunity } from 'src/user-community/entities/user-community.entity';
+import { CommunityMember } from 'src/community_members/entities/community_member.entity';
 
 @Entity('communities')
 export class Community {
@@ -25,6 +25,6 @@ export class Community {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => UserCommunity, (userCommunity) => userCommunity.community)
-  userCommunities: UserCommunity[];
+  @OneToMany(() => CommunityMember, (cm) => cm.community)
+  userCommunities: CommunityMember[];
 }
