@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateCommunityMemberDto } from './dto/create-community_member.dto';
 import { UpdateCommunityMemberDto } from './dto/update-community_member.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,8 +13,25 @@ export class CommunityMembersService {
   ) {}
 
   create(createCommunityMemberDto: CreateCommunityMemberDto) {
-    const cm = this.communityMemberRepository.create(createCommunityMemberDto);
-    return this.communityMemberRepository.save(cm);
+    try {
+      let cm;
+      // Check for pre-existence
+      cm = this.communityMemberRepository.findOne({
+        where: {
+          userId: createCommunityMemberDto.userId,
+        },
+      });
+      if (cm) {
+        throw new ConflictException();
+      }
+      cm = this.communityMemberRepository.create({
+        ...createCommunityMemberDto,
+        roleId: 4,
+      });
+      return this.communityMemberRepository.save(cm);
+    } catch (err) {
+      throw err;
+    }
   }
 
   findAll() {
