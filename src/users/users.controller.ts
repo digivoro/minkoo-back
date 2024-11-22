@@ -8,14 +8,12 @@ import {
   Delete,
   UseGuards,
   Req,
-  Logger,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CommunityMembersService } from 'src/community_members/community_members.service';
-import { CreateCommunityMemberDto } from 'src/community_members/dto/create-community_member.dto';
 
 @Controller('users')
 export class UsersController {
@@ -37,15 +35,22 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   fetchProfile(@Req() req) {
-    console.log('HOLA');
     return this.usersService.findOne(req.user?.userId);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('join')
-  joinCommunity(@Body() createCommunityMemberDto: CreateCommunityMemberDto) {
-    Logger.log(createCommunityMemberDto, 'joinCommunity');
-    return this.communityMemberService.create(createCommunityMemberDto);
+  @Get('joined-communities')
+  joinedCommunities(@Req() req) {
+    return this.communityMemberService.findUserCommunities(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('join/:communityId')
+  joinCommunity(@Req() req, @Param('communityId') communityId) {
+    return this.communityMemberService.create({
+      userId: req.user.userId,
+      communityId,
+    });
   }
 
   @Get(':id')
