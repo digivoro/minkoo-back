@@ -32,4 +32,12 @@ export class CommunityMembersService {
   remove(id: number) {
     return `This action removes a #${id} communityMember`;
   }
+
+  findUserCommunities(userId: number) {
+    return this.communityMemberRepository.find({
+      where: {
+        userId,
+      },
+    });
+  }
 }
