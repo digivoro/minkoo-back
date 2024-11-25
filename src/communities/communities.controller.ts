@@ -1,4 +1,4 @@
-import { Controller, Get, Logger, Param } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CommunitiesService } from './communities.service';
 
 @Controller('communities')
@@ -11,10 +11,8 @@ export class CommunitiesController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    Logger.log(`looking for community id: ${id}`);
-    const community = await this.communitiesService.findOne(+id);
-    Logger.log(JSON.stringify(community));
-    return community;
+  async getDetails(@Param('id') id: string) {
+    const communityDetails = await this.communitiesService.getDetails(+id);
+    return communityDetails;
   }
 }
